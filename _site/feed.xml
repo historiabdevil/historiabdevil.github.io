@@ -1,1 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://historiabdevil.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://historiabdevil.github.io/" rel="alternate" type="text/html" /><updated>2017-12-22T17:17:28+09:00</updated><id>https://historiabdevil.github.io/</id><title type="html">HyeonD</title><subtitle>A blog about technology and stuff related</subtitle><entry><title type="html">Test Post</title><link href="https://historiabdevil.github.io/test/" rel="alternate" type="text/html" title="Test Post" /><published>2016-02-24T22:48:00+09:00</published><updated>2016-02-24T22:48:00+09:00</updated><id>https://historiabdevil.github.io/test</id><content type="html" xml:base="https://historiabdevil.github.io/test/">&lt;h2 id=&quot;testtest&quot;&gt;testtest&lt;/h2&gt;</content><author><name>HyeonD</name></author><category term="blog" /><category term="markdown" /><category term="components" /><category term="extra" /><summary type="html">testtest</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://historiabdevil.github.io/assets/images/markdown.jpg" /></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://historiabdevil.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://historiabdevil.github.io/" rel="alternate" type="text/html" /><updated>2017-12-24T00:01:29+09:00</updated><id>https://historiabdevil.github.io/</id><title type="html">HyeonD</title><subtitle>A blog about technology and stuff related</subtitle><entry><title type="html">엉망이어도 괜찮아</title><link href="https://historiabdevil.github.io/tweet/" rel="alternate" type="text/html" title="엉망이어도 괜찮아" /><published>2017-12-23T00:00:00+09:00</published><updated>2017-12-23T00:00:00+09:00</updated><id>https://historiabdevil.github.io/tweet</id><content type="html" xml:base="https://historiabdevil.github.io/tweet/">&lt;p&gt;난 사실 markdown을 잘 다루지 못한다. 지금도 markdown 형식을 무시한채 텍스트 파일 쓰듯이 써대고 있다.
+전혀 다루지 못한다고 보는게 맞다.
+이 블로그를 처음 만들면서 지킬이라는걸 처음 써봤다.
+생각보다 너무 쉽더라. 다른 분이 만들어 놓은 테마 긁어다가 내 구미에 맞게 바꾸기만하면되니 얼마나 좋은가. 사실은 github.io로 블로그 운영할 생각에 일일히 html 작업을 해야 할 생각에 너무 머리가 아팠다. 참 세상 좋아 진것 같다. 다른 좋은 블로그들도 있긴하지만 왠지 정감들이 잘 안간다고 해야 할까 아직 웹상에서 작업을 한다는게 익숙치는 않은것 같다. 명색히 웹서비스를 업으로 한다는 사람이 말이다.&lt;/p&gt;
+
+&lt;p&gt;그래, 사실 너무 엉망이긴 하다. 그래도 괜찮다. 앞으로 바뀌어 갈테니깐. 이블로그도 나도. 좋은 모습으로 바뀌어 갈것이다.&lt;/p&gt;</content><author><name>HyeonD</name></author><category term="status" /><category term="잡담" /><category term="엉망" /><category term="Example" /><summary type="html">난 사실 markdown을 잘 다루지 못한다. 지금도 markdown 형식을 무시한채 텍스트 파일 쓰듯이 써대고 있다. 전혀 다루지 못한다고 보는게 맞다. 이 블로그를 처음 만들면서 지킬이라는걸 처음 써봤다. 생각보다 너무 쉽더라. 다른 분이 만들어 놓은 테마 긁어다가 내 구미에 맞게 바꾸기만하면되니 얼마나 좋은가. 사실은 github.io로 블로그 운영할 생각에 일일히 html 작업을 해야 할 생각에 너무 머리가 아팠다. 참 세상 좋아 진것 같다. 다른 좋은 블로그들도 있긴하지만 왠지 정감들이 잘 안간다고 해야 할까 아직 웹상에서 작업을 한다는게 익숙치는 않은것 같다. 명색히 웹서비스를 업으로 한다는 사람이 말이다.</summary></entry><entry><title type="html">code scope for let keyword in ES6</title><link href="https://historiabdevil.github.io/let-scope-es6/" rel="alternate" type="text/html" title="code scope for let keyword in ES6" /><published>2017-12-22T00:00:00+09:00</published><updated>2017-12-22T00:00:00+09:00</updated><id>https://historiabdevil.github.io/let-scope-es6</id><content type="html" xml:base="https://historiabdevil.github.io/let-scope-es6/">&lt;p&gt;자바스크립트를 다시 시작 해보자라는 마음으로 집에 있던 자바 스크립트 책을 하나 꺼내 들고 리뷰를 해볼 생각이다. 첫번째로 자바 스크립트의 변수 사용과 변수가 적용되는 그 반경에 대해 알아보고자 한다.&lt;/p&gt;
+
+&lt;p&gt;아래의 코드는 ES6 기준으로 변수 선언시 사용되는 키워드 var 와 let의 차이점과 각 키워드가 영향을 미치는 스코프에 관한 샘플코드이다.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/historiabdevil/725d520f44c93a283c0bc7a6bee365ac.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;위의 결과 값은 어떻게 나올까? 실행 결과는 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ node let.js
+let : Hello [if]
+var : World [if]
+let : Hello [function]
+var : World [if]
+let : Hello
+var : World
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;let의 경우는 각 블럭별 변수가 다르게 할당이 되었다는 것을 알 수 있다.&lt;/p&gt;
+
+&lt;p&gt;var의 경우는 함수 블럭안에서는 덮어 쓰기가 되며 함수를 빠져 나왔을때는 전역변수의 값을 사용하였다.&lt;/p&gt;
+
+&lt;p&gt;자바스크립트의 변수 선언시 전역변수의 유혹을 뿌리 칠 수는 없다. 나역시도 그렇다. 콜백의 늪에서 값을 공유하기 위해서는 전역변수만이 답이라고 생각하기도 하지만 그것은 나의 실력 탓일것이다.&lt;/p&gt;</content><author><name>HyeonD</name></author><category term="blog" /><category term="javascript" /><category term="ECMAscript" /><category term="Example" /><summary type="html">자바스크립트를 다시 시작 해보자라는 마음으로 집에 있던 자바 스크립트 책을 하나 꺼내 들고 리뷰를 해볼 생각이다. 첫번째로 자바 스크립트의 변수 사용과 변수가 적용되는 그 반경에 대해 알아보고자 한다.</summary></entry><entry><title type="html">2017년을 지나며</title><link href="https://historiabdevil.github.io/2017promise/" rel="alternate" type="text/html" title="2017년을 지나며" /><published>2017-12-22T00:00:00+09:00</published><updated>2017-12-22T00:00:00+09:00</updated><id>https://historiabdevil.github.io/2017promise</id><content type="html" xml:base="https://historiabdevil.github.io/2017promise/">&lt;p&gt;&lt;img src=&quot;https://image.webtoonguide.com/acomics/2014/01/%EC%9B%90%ED%94%BC%EC%8A%A4-%ED%8A%B9%EC%84%B1.jpg&quot; alt=&quot;형제여~ 우리는 어디로 가고 있는가&quot; /&gt;
+이번 한해는 정말 큰일을 많았던해다.
+약 3년간의 동고동락했던 그들과 헤어지고 새로운 동료들을 얻었다.&lt;/p&gt;
+
+&lt;p&gt;그리고 나의 제일 큰 아군인 나의 사랑스런 아내와 결혼을 했다.
+그리고 이사를 했다.&lt;/p&gt;
+
+&lt;p&gt;어쩌면 좋은 일들만 일어났지만…
+개인적인 감정은 어지러움의 연속이었던것같다
+급작스러운 환경변화와 적응하기위한 에너지 소모들이…
+날 좀 버겁게 한것 같다라는 생각이 든다.&lt;/p&gt;
+
+&lt;p&gt;정신 없이 한해가 지나가고 새로운 한해가 날 기다리고 있다.&lt;/p&gt;
+
+&lt;p&gt;오거라. 내년은 이번해 처럼 무력하게 있지 않겠다..&lt;/p&gt;
+
+&lt;p&gt;예전처럼 무리하게 계획을 세울 생각은 없다. 그러나 이것만은 하고 싶다. 하루 1 포스트.&lt;/p&gt;
+
+&lt;p&gt;정리할 시간이 필요 하다. 매번 정리를하지 못하니 다음것도 하지 못했다.
+이제는 그렇게 살면 안되는것 같다.&lt;/p&gt;</content><author><name>HyeonD</name></author><category term="status" /><category term="송년" /><category term="신년" /><category term="올해는...." /><summary type="html">이번 한해는 정말 큰일을 많았던해다. 약 3년간의 동고동락했던 그들과 헤어지고 새로운 동료들을 얻었다.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://historiabdevil.github.io/assets/images/markdown.jpg" /></entry></feed>
