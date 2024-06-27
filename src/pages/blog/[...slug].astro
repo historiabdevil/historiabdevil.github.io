@@ -1,20 +1,48 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import {type CollectionEntry, getCollection} from 'astro:content';
+// import BlogPost from '../../layouts/BlogPost.astro';
+import {contentfulClient} from "../../lib/contentful";
+import type {BlogPost} from "../../lib/contentful";
+import {documentToHtmlString} from "@contentful/rich-text-html-renderer";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+    const entries = await contentfulClient.getEntries<BlogPost>({
+        content_type: "blogPost"
+    });
+    const pages = entries.items.map((item) => ({
+        params: {slug: item.fields.slug},
+        props: {
+            title: item.fields.title,
+            content: documentToHtmlString(item.fields.content),
+            date: new Date(item.fields.date).toLocaleDateString(),
+        },
+    }));
+    return pages;
 }
-type Props = CollectionEntry<'blog'>;
+// export async function getStaticPaths() {
+// 	const posts = await getCollection('blog');
+// 	return posts.map((post) => ({
+// 		params: { slug: post.slug },
+// 		props: post,
+// 	}));
+// }
+// type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+// const post = Astro.props;
+// const { Content } = await post.render();
+const {content, title, date} = Astro.props;
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<!--<BlogPost {...post.data}>-->
+<!--	<Content />-->
+<!--</BlogPost>-->
+<html lang="en">
+<head>
+    <title>{title}</title>
+</head>
+<body>
+<h1>{title}</h1>
+<time>{date}</time>
+<article set:html={content}/>
+</body>
+</html>
