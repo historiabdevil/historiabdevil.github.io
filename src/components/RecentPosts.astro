@@ -1,17 +1,32 @@
 ---
-import {getCollection} from "astro:content";
-const posts = (await getCollection('blog'))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 5);
+// import {getCollection} from "astro:content";
+// const posts = (await getCollection('blog'))
+//     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 5);
+import {type BlogPost, contentfulClient} from "../lib/contentful";
+const {items} = await contentfulClient.getEntries<BlogPost>({
+    content_type: "blogPost",
+});
+
+const posts = items.map((item) => {
+    const {title, date, description, slug} = item.fields;
+    return {
+        title,
+        slug,
+        description,
+        date: new Date(date).toLocaleDateString()
+    };
+});
 ---
 <h6>Recent Posts</h6>
 <ul>
     {
         posts.map(post => {
             return (
-                <li>
-                    <h3>{post.data.title}</h3>
-                    <p>{post.body}</p>
-                </li>
+                    <li>
+                        <h3>{post.title}</h3>
+                        <p>{post.description}</p>
+                        <p>{post.date}</p>
+                    </li>
             )
         })
     }
