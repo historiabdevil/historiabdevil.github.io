@@ -30,7 +30,7 @@ export const getPosts = async (max?: number) => {
 
 export const getTags = async () => {
     const posts = await getCollection('blog')
-    const tags = new Set()
+    const tags: Set<String> = new Set()
     posts.forEach((post) => {
         post.data.tags.forEach((tag) => {
             tags.add(tag.toLowerCase())
