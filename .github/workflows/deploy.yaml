@@ -23,6 +23,10 @@ jobs:
         with:
           submodules: 'recursive'
           token: ${{ secrets.BLOG_SECRET }}
+      - name: Git Submodule Update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
       - name: Copy Resources
         run: ls -al src/content/blog/assets; cp -r src/content/blog/assets/* public
       - name: Commit Update
