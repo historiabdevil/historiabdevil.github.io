@@ -12,7 +12,9 @@ export async function getStaticPaths() {
 		props: { tag }
 	}))
 }
-
+interface Props {
+	tag: string
+}
 const { tag } = Astro.props
 
 const posts = await getPostByTag(tag)
