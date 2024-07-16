@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "WORKDIR=pwd; cp -rf $WORKDIR/src/content/blog/assets/* $WORKDIR/public/ && astro check && astro build",
+		"build": "WORKDIR=$(pwd); cp -rf $WORKDIR/src/content/blog/assets/* $WORKDIR/public/ && astro check && astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
