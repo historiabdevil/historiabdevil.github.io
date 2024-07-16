@@ -1,7 +1,7 @@
 ---
 import {getCategories} from '@/utils'
 import Category from '@/components/Category'
-import {CategoryInfo} from "../utils/post";
+import type {CategoryInfo} from "../utils/post";
 const categories = await getCategories()
 
 const {activeCategory} = Astro.props
