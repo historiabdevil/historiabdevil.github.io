@@ -21,7 +21,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Copy Resources
-        run: ls -al src/content
+        run: ls -al src/content/blog/assets; cp -r src/content/blog/assets/* public
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         with:
