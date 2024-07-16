@@ -1,0 +1,31 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import {SITE_TITLE} from '../../consts';
+import Github from '../icons/Github.astro';
+import Instagram from '../icons/Instagram.astro';
+import Facebook from '../icons/Facebook.astro';
+import Twitter from '../icons/Twitter.astro';
+---
+<header class="">
+    <div class="container mx-auto flex items-end justify-between pl-5 pr-5 gap-5">
+        <div class="flex flex-row items-center gap-3">
+            <a href="/"><img class="w-10" src="/images/logo.webp"/></a>
+            <h1 class="text-2xl font-bold">{SITE_TITLE}</h1>
+        </div>
+        <div class="flex flex-row gap-5">
+            <div class="text-black flex flex-row items-center justify-between gap-1">
+                <HeaderLink href="/">Blog</HeaderLink>
+                <HeaderLink href="/tags">Tags</HeaderLink>
+                <HeaderLink href="/about">About</HeaderLink>
+            </div>
+            <div class="flex flex-row items-center justify-evenly gap-3">
+                <a href=""><span><Github/></span></a>
+                <a href=""><span><Instagram/></span></a>
+                <a href=""><span><Facebook/></span></a>
+                <a href=""><span><Twitter/></span></a>
+            </div>
+        </div>
+    </div>
+</header>
+<style>
+</style>

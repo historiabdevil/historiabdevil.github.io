@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content'
+interface Props {
+    posts: CollectionEntry<'blog'>[]
+}
+const {posts} = Astro.props
+console.log("=>(TagCloud.astro:4) posts", posts);
+interface Cloud  {
+    [key: string]: number
+}
+let cloud: Cloud = {};
+posts && posts.length > 0 &&
+posts.forEach(post => {
+    post.data.tags.forEach(tag => {
+        console.log("=>(TagCloud.astro:9) tag", tag);
+        if (cloud[tag]) {
+            cloud[tag] += 1;
+        } else {
+            cloud[tag] = 1;
+        }
+    });
+});
+let tags = [];
+for (let prop in cloud) {
+    tags.push(prop);
+}
+---
+<div style="text-align: center">
+    {tags.map(tag => (
+            <a href={`/tags/${tag}`}>
+            <span class="mb-2 me-2 box" style=`font-size: ${cloud[tag] * 2 + 12}px;`>
+            {tag}
+                </span>
+            </a>
+    ))
+    }
+</div>

@@ -1,52 +1,12 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
 import RecentPosts from "../components/RecentPosts.astro";
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Categories from "../components/Categories.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-<head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}/>
-</head>
-<body>
-<Header/>
-<main class="container mx-auto px-4 py-8 grid grid-cols-3 gap-4">
-    <!-- Main content -->
-    <!-- 3개의 섹션으로 나누어 Responsive하게 구성 -->
-    <aside class="col-span-1">
-        <section class="mb-8">
-            <!-- Recent Posts -->
-            <RecentPosts/>
-        </section>
-        <section>
-            <!-- Tags -->
+<BaseLayout>
+    <Categories/>
+    <RecentPosts/>
+</BaseLayout>
 
-        </section>
-    </aside>
-    <article class="col-span-1">
-    </article>
-    <aside class="col-span-1">
-        <section></section>
-    </aside>
-    <!-- End of Main content -->
-</main>
-<Footer/>
-<!-- Footer -->
-<!-- Footer 가장 하단으로 고정 -->
-<!-- Footer 가장 하단으로 고정 -->
-<style>
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-</style>
-<!-- Footer -->
 
-<!-- End of Footer -->
-</body>
-</html>

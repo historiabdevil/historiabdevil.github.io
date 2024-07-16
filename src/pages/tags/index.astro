@@ -1,0 +1,11 @@
+---
+import {getPosts, getTags} from "../../utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TagCloud from "../../components/TagCloud.astro";
+const posts = await getPosts()
+---
+
+<BaseLayout>
+    <h1 class="text-3xl font-bold text-gray-800">Tags</h1>
+    <TagCloud posts={posts}/>
+</BaseLayout>

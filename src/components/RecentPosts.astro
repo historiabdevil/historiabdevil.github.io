@@ -1,33 +1,18 @@
 ---
-// import {getCollection} from "astro:content";
-// const posts = (await getCollection('blog'))
-//     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 5);
-import {type BlogPost, contentfulClient} from "../lib/contentful";
-const {items} = await contentfulClient.getEntries<BlogPost>({
-    content_type: "blogPost",
-});
-
-const posts = items.map((item) => {
-    const {title, date, description, slug} = item.fields;
-    return {
-        title,
-        slug,
-        description,
-        date: new Date(date).toLocaleDateString()
-    };
-});
+import {getPosts} from '@/utils'
+import Thumbnail from "./Thumbnail.astro";
+const posts = await getPosts(5)
+console.log(posts)
 ---
-<h6>Recent Posts</h6>
-<ul>
+<h1 class="text-2xl">Recent Posts</h1>
+<div class="flex-row flex items-start gap-5">
     {
         posts.map(post => {
             return (
-                    <li>
-                        <h3>{post.title}</h3>
-                        <p>{post.description}</p>
-                        <p>{post.date}</p>
-                    </li>
+                    <Thumbnail title={post.data.title} slug={post.slug} description={post.data.description}
+                               heroImage={post.data.heroImage} pubDate={post.data.pubDate}
+                    />
             )
         })
     }
-</ul>
+</div>

@@ -6,6 +6,8 @@ const blog = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
+		category: z.string(),
+		draft: z.boolean(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
@@ -13,5 +15,6 @@ const blog = defineCollection({
 		tags: z.array(z.string()),
 	}),
 });
+
 
 export const collections = { blog };
