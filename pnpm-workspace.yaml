@@ -1,0 +1,3 @@
+overrides:
+  semver: "7.8.2"
+  "@emnapi/runtime": "1.10.0"
