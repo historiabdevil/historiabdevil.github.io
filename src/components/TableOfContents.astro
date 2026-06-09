@@ -15,21 +15,26 @@ function buildToc(headings: TableOfContent[]) {
 	let toc: TableOfContent[] = []
 	let parentHeadings = new Map()
 	headings.forEach((h) => {
+		if (h.depth > 3) return // Limit depth to H3 only
 		let heading = { ...h, subheadings: [] }
 		parentHeadings.set(heading.depth, heading)
-		// Change 2 to 1 if your markdown includes your <h1>
 		if (heading.depth === 1 || heading.depth === 2) {
 			toc.push(heading)
-		} else {
-			parentHeadings.get(heading.depth - 1).subheadings.push(heading)
+		} else if (heading.depth === 3) {
+			const parent = parentHeadings.get(2) || parentHeadings.get(1)
+			if (parent) {
+				parent.subheadings.push(heading)
+			} else {
+				toc.push(heading)
+			}
 		}
 	})
 	return toc
 }
 ---
 
-<nav class='max-w-xs dark:text-black'>
-	<h1 class='font-bold mb-3 text-2xl dark:text-white'>Index</h1>
+<nav class='max-w-xs'>
+	<h1 class='text-sm font-semibold tracking-wider text-zinc-500 dark:text-zinc-400 uppercase mb-3'>Index</h1>
 	<ul class='[text-wrap:balance] flex flex-col gap-1'>
 		{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
 	</ul>

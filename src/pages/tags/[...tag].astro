@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout'
-import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
-import { getTags, getPostByTag } from '@/utils'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ListPosts from '../../components/ListPosts.astro'
+import TagSidebar from '../../components/TagSidebar.astro'
+import { getTags, getPostByTag } from '../../utils'
 
 export async function getStaticPaths() {
 	const tags = await getTags()
 
 	return tags.map((tag) => ({
-		params: { tag },
+		params: { tag: tag.toLowerCase() },
 		props: { tag }
 	}))
 }
@@ -20,7 +20,32 @@ const { tag } = Astro.props
 const posts = await getPostByTag(tag)
 ---
 
-<BaseLayout title={tag}>
-	<TitlePage title={tag} />
-	<ListPosts posts={posts} />
+<BaseLayout title={`Tag: ${tag}`}>
+    <div class="max-w-6xl mx-auto px-4 py-10 space-y-12 pb-16">
+        
+        <!-- Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 items-start">
+            
+            <!-- Left Column: Tag Navigation Sidebar -->
+            <aside class="lg:col-span-1">
+                <TagSidebar activeTag={tag} />
+            </aside>
+
+            <!-- Right Column: Filtered Post List -->
+            <div class="lg:col-span-3 space-y-6">
+                <div class="mb-4 pb-2 border-b border-[#f1f3f5]">
+                    <h2 class="text-sm font-sans font-bold text-[#868e96] uppercase tracking-wider">
+                        Articles tagged with <span class="text-accent">#{tag}</span>
+                    </h2>
+                </div>
+                
+                {posts && posts.length > 0 ? (
+                    <ListPosts posts={posts} />
+                ) : (
+                    <p class="text-sm text-zinc-400 py-8">이 태그에 속한 게시글이 없습니다.</p>
+                )}
+            </div>
+            
+        </div>
+    </div>
 </BaseLayout>

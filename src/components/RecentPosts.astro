@@ -1,16 +1,17 @@
 ---
 import {getPosts} from '@/utils'
 import Thumbnail from "./Thumbnail.astro";
-const posts = await getPosts(5)
+import type { CollectionEntry } from 'astro:content';
+const posts = await getPosts()
+const typedPosts = posts as CollectionEntry<'blog'>[]
 console.log(posts)
 ---
-<h1 class="text-2xl">Recent Posts</h1>
-<div class="flex-row flex items-start gap-5">
+<div id="post-list-container" class="flex flex-col gap-8">
     {
-        posts.map(post => {
+        typedPosts.map((post) => {
             return (
-                    <Thumbnail title={post.data.title} slug={post.slug} description={post.data.description}
-                               heroImage={post.data.heroImage} pubDate={post.data.pubDate}
+                    <Thumbnail title={post.data.title} slug={post.id} description={post.data.description}
+                               heroImage={post.data.heroImage} pubDate={post.data.pubDate} tags={post.data.tags}
                     />
             )
         })

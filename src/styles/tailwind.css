@@ -3,38 +3,96 @@
 @tailwind utilities;
 
 @layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
+	body {
+		@apply bg-[#f8f9fa] text-[#212529] font-body antialiased selection:bg-teal-500/10 selection:text-accent;
+	}
+
+	/* prose styles here (Velog/Medium Readable Style) */
+	.prose {
+		@apply text-[#292929] leading-relaxed max-w-none;
+	}
 
 	.prose code {
-		@apply text-base;
+		@apply text-[#e01e5a] font-mono text-sm px-1.5 py-0.5 rounded bg-[#f1f3f5] font-normal;
 	}
 
-	/* prose styles here */
+	.prose pre code,
+	.astro-code code {
+		background-color: transparent !important;
+		padding: 0 !important;
+		border-radius: 0 !important;
+		color: inherit !important;
+		font-size: inherit !important;
+	}
+
 	.prose h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
+	.prose h2,
+	.prose h3,
+	.prose h4 {
+		@apply text-[#121212] font-bold tracking-tight mt-8 mb-4 !important;
 	}
 
-	html.dark .shiki,
-	html.dark .shiki span {
-	  color: var(--shiki-dark) !important;
-	  background-color: theme(colors.gray.900) !important;
+	.prose h1 { @apply text-3xl !important; }
+	.prose h2 { @apply text-2xl border-b border-[#f1f3f5] pb-2 !important; }
+	.prose h3 { @apply text-xl !important; }
+
+	.prose a {
+		@apply text-accent hover:text-accent-light underline transition-colors;
+	}
+
+	.prose p {
+		@apply mb-5 leading-relaxed text-[16px] md:text-[17px] text-[#292929];
+	}
+
+	.astro-code {
+		position: relative;
+		@apply border-y border-slate-100 p-5 my-6 text-[14px] shadow-sm font-mono leading-relaxed !important;
+		background-color: var(--shiki-light-bg, #ffffff) !important;
+		color: var(--shiki-light, #000000) !important;
+	}
+
+	.astro-code .line {
+		background-color: transparent !important;
+	}
+
+	.astro-code[data-language]::before {
+		content: attr(data-language);
+		position: absolute;
+		top: 0.75rem;
+		right: 0.95rem;
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: #868e96;
+		font-family: ui-monospace, monospace;
+		pointer-events: none;
+		user-select: none;
+		letter-spacing: 0.05em;
+		z-index: 10;
+	}
+
+	html.dark .astro-code {
+		background-color: var(--shiki-dark-bg, #1e1e1e) !important;
+		color: var(--shiki-dark, #babed8) !important;
+		@apply border-y border-zinc-800 !important;
+	}
+
+	html.dark .astro-code span {
+		color: var(--shiki-dark) !important;
 	}
 }
 
-.glass {
-	background: rgba(57, 56, 56, 0.52);
-	backdrop-filter: blur(13px) saturate(150%);
-	-webkit-backdrop-filter: blur(13px) saturate(150%);
-	z-index: -1;
+/* Velog style card shadow & hover interaction */
+.velog-card {
+	@apply bg-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out;
+	box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
 }
 
-.shadow {
-	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
+.velog-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.08);
+}
+
+.medium-border-bottom {
+	border-bottom: 1px solid #f1f3f5;
 }

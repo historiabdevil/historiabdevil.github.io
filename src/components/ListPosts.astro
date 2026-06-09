@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import { type CollectionEntry, render } from 'astro:content'
 import PostCard from './PostCard.astro'
 import { cn } from '../utils'
 
@@ -9,6 +9,16 @@ type Props = {
 }
 
 const { posts, FirstBig = false } = Astro.props
+
+const renderedPosts = await Promise.all(
+	posts.map(async (post) => {
+		const { remarkPluginFrontmatter } = await render(post)
+		return {
+			post,
+			readTime: remarkPluginFrontmatter.minutesRead as string
+		}
+	})
+)
 ---
 
 <section
@@ -18,17 +28,13 @@ const { posts, FirstBig = false } = Astro.props
 	)}
 >
 	{
-		posts.map(async (post) => {
-			const { remarkPluginFrontmatter } = await post.render()
-
-			return (
-				<PostCard
-					id={post.id}
-					data={post.data}
-					slug={post.slug}
-					readTime={remarkPluginFrontmatter.minutesRead}
-				/>
-			)
-		})
+		renderedPosts.map(({ post, readTime }) => (
+			<PostCard
+				id={post.id}
+				data={post.data}
+				slug={post.id}
+				readTime={readTime}
+			/>
+		))
 	}
 </section>

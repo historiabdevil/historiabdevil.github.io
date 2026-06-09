@@ -6,6 +6,7 @@ import TitlePage from '@/components/TitlePage'
 import {sluglify, unsluglify, getCategories, getPosts} from '@/utils'
 import {siteConfig} from '@/data/site.config'
 import Pagination from '@/components/Pagination'
+import type {CollectionEntry} from 'astro:content';
 import type {CategoryInfo} from "../../../utils/post";
 
 export async function getStaticPaths({paginate}: any) {
@@ -15,7 +16,7 @@ export async function getStaticPaths({paginate}: any) {
     return categories.flatMap((category: CategoryInfo) => {
         const unsluglifyNameCategory = unsluglify(category!.name.toLowerCase())
         const filteredPosts = allPosts.filter(
-            (post) => post.data.category.toLowerCase() === unsluglifyNameCategory
+            (post: CollectionEntry<'blog'>) => post.data.category.toLowerCase() === unsluglifyNameCategory
         )
 
         return paginate(filteredPosts, {

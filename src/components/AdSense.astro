@@ -1,0 +1,47 @@
+---
+interface Props {
+  slot: string; // 애드센스 광고 단위 ID
+  style?: string; // 추가 인라인 스타일
+  format?: 'auto' | 'fluid' | 'rectangle'; // 광고 포맷 (기본값: auto)
+  responsive?: 'true' | 'false'; // 반응형 설정 (기본값: true)
+  className?: string; // 테두리나 마진 설정을 위한 추가 클래스
+}
+
+const {
+  slot,
+  style = "display:block;",
+  format = "auto",
+  responsive = "true",
+  className = ""
+} = Astro.props;
+
+const isDev = import.meta.env.DEV;
+---
+
+{isDev ? (
+  <!-- 로컬 개발 모드용 플레이스홀더: CLS 방지용 높이 보장 및 시각적 피드백 제공 -->
+  <div class={`my-6 flex min-h-[280px] w-full flex-col items-center justify-center rounded-xl border border-dashed border-stone-300 bg-stone-50/50 p-6 text-stone-500 dark:border-stone-800 dark:bg-[#111019]/50 dark:text-stone-400 ${className}`}>
+    <div class="flex items-center gap-2 mb-1">
+      <svg class="h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+      </svg>
+      <span class="font-semibold text-sm">Google AdSense (개발 모드)</span>
+    </div>
+    <span class="text-xs text-stone-400 dark:text-stone-500">광고 슬롯: {slot}</span>
+    <span class="text-xs text-stone-400 dark:text-stone-500 mt-2">빌드 또는 배포 환경에서만 실제 광고가 렌더링됩니다.</span>
+  </div>
+) : (
+  <!-- 실제 배포 모드: 레이아웃 누수를 막기 위해 min-h 설정 및 광고 로드 -->
+  <div class={`my-6 overflow-hidden min-h-[280px] w-full flex justify-center items-center ${className}`}>
+    <ins class="adsbygoogle"
+         style={style}
+         data-ad-client="ca-pub-1371289207293938"
+         data-ad-slot={slot}
+         data-ad-format={format}
+         data-full-width-responsive={responsive}>
+    </ins>
+    <script is:inline>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+)}

@@ -1,12 +1,33 @@
 ---
 import RecentPosts from "../components/RecentPosts.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Categories from "../components/Categories.astro";
+import TagSidebar from "../components/TagSidebar.astro";
+import TerminalHero from "../components/TerminalHero.astro";
 ---
 
 <BaseLayout>
-    <Categories/>
-    <RecentPosts/>
+    <!-- Main layout container with Velog/Medium reading-first margins -->
+    <div class="max-w-6xl mx-auto px-6 pb-20">
+        <!-- Velog Style Profile Header (Slight bottom margin adjustment) -->
+        <!--        <header class="mb-10">
+            <TerminalHero />
+            </header> -->
+
+        <!-- Main Body: Two Columns with clean spacing and subtle dividing lines -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+            
+            <!-- Left Column: Slim Tag Navigation Sidebar -->
+            <aside class="lg:col-span-1 lg:sticky lg:top-8">
+                <TagSidebar activeTag="All" />
+            </aside>
+
+            <!-- Right Column: Focus on Content, wider reading layout -->
+            <main class="lg:col-span-3">
+                <div class="space-y-2">
+                    <RecentPosts />
+                </div>
+            </main>
+            
+        </div>
+    </div>
 </BaseLayout>
-
-

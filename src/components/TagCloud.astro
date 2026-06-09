@@ -10,8 +10,8 @@ interface Cloud  {
 }
 let cloud: Cloud = {};
 posts && posts.length > 0 &&
-posts.forEach(post => {
-    post.data.tags.forEach(tag => {
+posts.forEach((post: CollectionEntry<'blog'>) => {
+    post.data.tags.forEach((tag: string) => {
         console.log("=>(TagCloud.astro:9) tag", tag);
         if (cloud[tag]) {
             cloud[tag] += 1;
@@ -20,13 +20,13 @@ posts.forEach(post => {
         }
     });
 });
-let tags = [];
+let tags: string[] = [];
 for (let prop in cloud) {
     tags.push(prop);
 }
 ---
 <div style="text-align: center">
-    {tags.map(tag => (
+    {tags.map((tag: string) => (
             <a href={`/tags/${tag}`}>
             <span class="mb-2 me-2 box" style=`font-size: ${cloud[tag] * 2 + 12}px;`>
             {tag}

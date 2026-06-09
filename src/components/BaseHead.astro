@@ -3,7 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/tailwind.css';
 import {siteConfig} from "../data/site.config";
-import {ViewTransitions} from 'astro:transitions';
+import {ClientRouter} from 'astro:transitions';
 
 interface Props {
     title: string;
@@ -21,17 +21,65 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`
 
 import {join} from 'path'
 import {AstroFont} from 'astro-font'
+
+// AEO (Answer Engine Optimization)용 JSON-LD 구조화 데이터 구성
+const jsonLdSchema = articleDate
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": socialImageURL,
+        "datePublished": articleDate,
+        "author": {
+            "@type": "Person",
+            "name": siteConfig.author,
+            "url": canonicalURL.origin
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": siteConfig.title,
+            "logo": {
+                "@type": "ImageObject",
+                "url": new URL('/favicon.svg', canonicalURL.origin).href
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": canonicalURL.href
+        }
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": siteConfig.title,
+        "description": siteConfig.description || description,
+        "url": canonicalURL.origin,
+        "author": {
+            "@type": "Person",
+            "name": siteConfig.author
+        }
+      };
 ---
+
+<!-- Google Tag Manager -->
+<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K6RMGCFH');</script>
+<!-- End Google Tag Manager -->
 
 <!-- Global Metadata -->
 <meta charset="utf-8"/>
+
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <meta name="generator" content={Astro.generator}/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL}/>
-<ViewTransitions/>
+<ClientRouter/>
 <!-- Primary Meta Tags -->
 <title>{siteTitle}</title>
 <meta name="title" content={siteTitle}/>
@@ -109,3 +157,15 @@ import {AstroFont} from 'astro-font'
             }
         ]}
 />
+
+<!-- AEO 구조화 데이터 주입 -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
+
+<!-- 구글 애드센스 인증 및 광고 스크립트 -->
+<meta name="google-adsense-account" content="ca-pub-1371289207293938" />
+<script
+        is:inline
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1371289207293938"
+        crossorigin="anonymous"
+></script>

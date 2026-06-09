@@ -17,18 +17,26 @@ export default defineConfig({
     markdown: {
         remarkPlugins: [remarkReadingTime],
         shikiConfig: {
-            theme: 'material-theme-palenight',
+            themes: {
+                light: 'light-plus',
+                dark: 'material-theme-palenight'
+            },
             wrap: true
         }
     },
-    integrations: [mdx({
-        syntaxHighlight: 'shiki',
-        shikiConfig: {
-            experimentalThemes: {
-                light: 'vitesse-light',
-                dark: 'material-theme-palenight',
+    integrations: [
+        mdx({
+            syntaxHighlight: 'shiki',
+            shikiConfig: {
+                themes: {
+                    light: 'light-plus',
+                    dark: 'material-theme-palenight'
+                },
+                wrap: true
             },
-            wrap: true
-        },
-    }), sitemap(), tailwind(), react()]
+        }),
+        sitemap(),
+        tailwind(),
+        react()
+    ]
 });
