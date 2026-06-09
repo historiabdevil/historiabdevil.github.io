@@ -4,17 +4,25 @@
 import '../styles/tailwind.css';
 import {siteConfig} from "../data/site.config";
 import {ClientRouter} from 'astro:transitions';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
     title: string;
     description: string;
-    ogImage?: string;
+    ogImage?: string | ImageMetadata;
     articleDate: string;
 }
 
 const {title, description, ogImage = '/blog-placeholder-1.jpg', articleDate} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImageURL = new URL(ogImage ? ogImage : '/image.jpg', Astro.url).href;
+const socialImageURL = new URL(
+    ogImage
+        ? typeof ogImage === 'string'
+            ? ogImage
+            : ogImage.src
+        : '/image.jpg',
+    Astro.url
+).href;
 const titleSeparator = '•'
 
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`

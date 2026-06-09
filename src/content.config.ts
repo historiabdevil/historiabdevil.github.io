@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 const blog = defineCollection({
 	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
 	// Type-check frontmatter using a schema
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		category: z.string(),
@@ -12,7 +12,7 @@ const blog = defineCollection({
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
+		heroImage: image().optional(),
 		tags: z.array(z.string()),
 		complexity: z.string().optional(), // 포스트 성격/깊이 (예: 'Deep Dive', 'Quick Tip')
 		metrics: z.array(

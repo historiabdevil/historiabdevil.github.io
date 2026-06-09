@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
 	return rss({
 		title: siteConfig.title,
 		description: siteConfig.description,
-		site: context.site || 'https://historiabdevil.github.io/',
+		site: context.site || 'https://blog.hyeond.cloud',
 		items: posts.map((post) => ({
 			title: post.data.title,
 			pubDate: post.data.pubDate,

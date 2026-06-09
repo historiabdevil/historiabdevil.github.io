@@ -7,7 +7,7 @@ import {remarkReadingTime} from "./src/utils/readTime.ts";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://historiabdevil.github.io/',
+    site: 'https://blog.hyeond.cloud',
     vite: {
         optimizeDeps: {
             noDiscovery: true,
