@@ -1,6 +1,10 @@
+packages:
+  - "."
+
 overrides:
   semver: "7.8.2"
   "@emnapi/runtime": "1.10.0"
+  better-sqlite3: "9.6.0"
 
 allowBuilds:
   better-sqlite3: true
